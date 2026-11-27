@@ -4,7 +4,7 @@ const defaults = {
     letter:
         "Happy birthday!\n\nThere is something quietly wonderful about you. Your smile makes ordinary days feel a little brighter. I wanted to make this small surprise simply to celebrate you.\n\nMay this year bring you peaceful mornings, beautiful adventures, and everything you have been wishing for. You deserve happiness, today and always.\n\nNo expectations, just a little wish from someone who cares.",
     compliments:
-        "You are wonderful|Your smile is beautiful|You deserve happiness|Keep shining",
+        "Your soft-spoken nature is a beauty of its own.|You have a magical way of turning dull moments into happy ones.|You deserve happiness|Your presence brings a rare sense of comfort and peace.",
     captions: "A beautiful smile|Little moments, big happiness|Keep being you",
 };
 export default function decorate(block) {
