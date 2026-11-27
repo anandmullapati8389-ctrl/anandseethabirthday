@@ -54,40 +54,32 @@ export default function decorate(block) {
         step = n;
         render();
     };
-    function music() {
-        if (playing) {
-            playing = false;
-            clearInterval(timer);
-            audio?.suspend();
-            render();
-            return;
-        }
+    
+async function music() {
+    if (!audio) {
+        audio = new Audio(
+            new URL('../../arjun-sarah-theme.mp3', import.meta.url).href
+        );
+        audio.loop = true;
+        audio.volume = 0.5;
+    }
+
+    if (playing) {
+        audio.pause();
+        playing = false;
+    } else {
         try {
-            audio ??= new (window.AudioContext || window.webkitAudioContext)();
-            audio.resume();
+            await audio.play();
             playing = true;
-            let i = 0;
-            const notes = [261.63, 329.63, 392, 440, 392, 329.63, 293.66, 349.23];
-            const note = () => {
-                const o = audio.createOscillator(),
-                    g = audio.createGain(),
-                    t = audio.currentTime;
-                o.type = "sine";
-                o.frequency.value = notes[i++ % notes.length];
-                g.gain.setValueAtTime(0, t);
-                g.gain.linearRampToValueAtTime(0.045, t + 0.08);
-                g.gain.exponentialRampToValueAtTime(0.001, t + 0.55);
-                o.connect(g).connect(audio.destination);
-                o.start(t);
-                o.stop(t + 0.6);
-            };
-            note();
-            timer = setInterval(note, 650);
-            render();
-        } catch {
+        } catch (error) {
+            console.error('Music playback failed:', error);
             playing = false;
         }
     }
+
+    render();
+}
+
     function render() {
         block.replaceChildren();
         const shell = el("div", "birthday-shell");
