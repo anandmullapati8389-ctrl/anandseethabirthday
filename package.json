@@ -1,0 +1,16 @@
+{
+  "name": "birthday-eds",
+  "version": "1.0.0",
+  "description": "A dependency-free, mobile-first single-page birthday block. All six screens run inside one block without page navigation.",
+  "main": "index.js",
+  "scripts": {
+  "start": "http-server . -p 3000 -c-1"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
